@@ -79,6 +79,20 @@
             color: #ff3b30;
             font-weight: 600;
         }
+        /* Style for responsive YouTube embeds */
+        .aspect-ratio-16-9 {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .aspect-ratio-16-9 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -139,18 +153,42 @@
 
         <!-- Guides Page -->
         <section id="guides" class="page">
-            <h1 class="text-4xl font-bold mb-8 text-center">Guides & Tutorials</h1>
-            <div class="max-w-4xl mx-auto bg-gray-800/50 p-8 rounded-lg">
-                <h2 class="text-3xl font-bold mb-4 accent-color">What is Jailbreaking?</h2>
-                <div class="space-y-4 text-gray-300 leading-relaxed">
-                    <p>Jailbreaking is the process of removing software restrictions imposed by Apple on devices running iOS and other related operating systems. It is typically accomplished by using a software exploit to gain root access to the operating system, allowing the user to install applications, extensions, and themes that are not available through the official Apple App Store.</p>
-                    <p>In essence, jailbreaking gives you the freedom to customize your device to your liking. This is often referred to as "tweak" installation. While it provides immense flexibility, it's important to understand the implications:</p>
-                    <ul class="list-disc list-inside space-y-2 pl-4">
-                        <li><span class="font-semibold text-white">Security Risks:</span> Bypassing Apple's security sandbox can potentially expose your device to malware if you are not careful about what you install. It's crucial to only use trusted repositories.</li>
-                        <li><span class="font-semibold text-white">Stability:</span> Poorly coded tweaks can cause system instability or increased battery drain.</li>
-                        <li><span class="font-semibold text-white">Warranty:</span> While jailbreaking is legal, Apple may void your warranty if they determine a hardware issue was caused by unauthorized software modifications. A simple restore in iTunes typically removes all traces of a jailbreak.</li>
-                    </ul>
-                    <p>This site is dedicated to providing safe, reliable information to help you navigate the world of jailbreaking responsibly.</p>
+            <h1 class="text-4xl font-bold mb-8 text-center">Video Guides & Tutorials</h1>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Guide 1 -->
+                <div class="news-card rounded-lg overflow-hidden">
+                    <div class="aspect-ratio-16-9">
+                        <iframe src="https://www.youtube.com/embed/enZeo4qXzN8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Guide 1: Preparing Your Device for Jailbreaking</h3>
+                        <p class="text-gray-300">This essential guide covers the first steps you must take before any jailbreak attempt, including backing up your data and checking compatibility.</p>
+                    </div>
+                </div>
+                <!-- Guide 2 -->
+                <div class="news-card rounded-lg overflow-hidden">
+                    <div class="aspect-ratio-16-9">
+                        <iframe src="https://www.youtube.com/embed/K72ptMpp2ck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Guide 2: How to Use the Palera1n Tool</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Entering DFU mode.</li>
+                            <li>Connecting to your computer.</li>
+                            <li>Running the Palera1n script.</li>
+                            <li>Finalizing setup on your device.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Guide 3 -->
+                <div class="news-card rounded-lg overflow-hidden">
+                    <div class="aspect-ratio-16-9">
+                        <iframe src="https://www.youtube.com/embed/7FbgibSUdb0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Guide 3: Installing Tweaks with Sileo</h3>
+                        <p class="text-gray-300">Learn how to browse repositories, add new sources, and safely install tweaks using the modern Sileo package manager.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -270,7 +308,6 @@
             let currentNewsDataString = ''; // Holds a string copy of the current news data to check for changes.
 
             // --- Page Elements ---
-            const pageLinks = document.querySelectorAll('.page-link');
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -311,9 +348,6 @@
                     `;
                     newsArchiveContainer.innerHTML += articleHtml;
                 });
-                
-                // Re-add event listeners to the newly created page links
-                addPageLinkListeners();
             }
 
             // --- Page Navigation Logic ---
@@ -325,23 +359,15 @@
                     window.scrollTo(0, 0);
                 }
                 navLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === `#${pageId}`);
+                    const isPageLink = link.classList.contains('page-link');
+                    if (isPageLink && link.getAttribute('href') === `#${pageId}`) {
+                         link.classList.add('active');
+                    } else if (isPageLink) {
+                         link.classList.remove('active');
+                    }
                 });
                 mobileMenu.classList.add('hidden');
             };
-
-            function addPageLinkListeners() {
-                document.querySelectorAll('.page-link').forEach(link => {
-                    const newLink = link.cloneNode(true);
-                    link.parentNode.replaceChild(newLink, link);
-
-                    newLink.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const targetPageId = this.getAttribute('href').substring(1);
-                        showPage(targetPageId);
-                    });
-                });
-            }
             
             // --- Mobile Menu Toggle ---
             mobileMenuButton.addEventListener('click', function() {
@@ -374,6 +400,21 @@
                     newsArchiveContainer.innerHTML = `<p class="text-red-500 text-center">Failed to load news archive.</p>`;
                 }
             }
+
+            // --- Event Delegation for Navigation ---
+            document.body.addEventListener('click', function(e) {
+                // Find the closest ancestor link that is a .page-link
+                const link = e.target.closest('a.page-link');
+
+                // If a page-link was clicked
+                if (link) {
+                    e.preventDefault(); // Prevent the default link behavior
+                    const targetPageId = link.getAttribute('href').substring(1);
+                    if (targetPageId) {
+                        showPage(targetPageId);
+                    }
+                }
+            });
 
             // --- Initial Load ---
             checkForNewsUpdates(); // Load news immediately on page load
