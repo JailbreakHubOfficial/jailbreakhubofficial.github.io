@@ -1,0 +1,36 @@
+[ {
+    "id": 5,
+    "date": "July 25, 2025",
+    "title": "Understanding the Polling Method: How Our Site Stays Live",
+    "summary": "A behind-the-scenes look at the new polling technology that keeps our news feed automatically updated without requiring a page reload.",
+    "content": "We've recently upgraded our site to use a JavaScript polling method. Every 30 seconds, your browser quietly checks our `news.json` file for any changes. If a new article is found, the page automatically re-renders the news section to display the latest content instantly. This ensures you're always seeing the most current information without any extra effort. This is a step towards making our platform as dynamic and responsive as the jailbreak community itself."
+  },
+  {
+    "id": 4,
+    "date": "July 25, 2025",
+    "title": "New Site Feature: Dynamic News Loading!",
+    "summary": "Our website has been updated to load news dynamically, allowing for faster and more frequent updates for the community.",
+    "content": "In a move to better serve our community, we have re-engineered our news system. Instead of hard-coding articles, we now load all content from a centralized data source. This allows us to publish breaking news much faster. This entire article, for example, was added by simply adding a new entry to our data file. We hope you enjoy the more dynamic and up-to-date experience!"
+  },
+  {
+    "id": 1,
+    "date": "July 24, 2025",
+    "title": "CoreTrust Bug Discovery Sparks Hope for iOS 18",
+    "summary": "A newly discovered vulnerability in CoreTrust could pave the way for a jailbreak on Apple's latest OS. Researchers are cautiously optimistic.",
+    "content": "A significant vulnerability has been identified by security researchers within Apple's CoreTrust service, a critical component responsible for signature validation across iOS. The bug, which affects versions up to the current iOS 18 beta, could potentially allow for the bypassing of code signing checks. While a full jailbreak requires chaining multiple exploits, this discovery is a monumental first step. The community is buzzing with excitement, though developers urge patience as much more work is needed to develop a stable, user-friendly tool. This is the most promising lead for a modern jailbreak since the KFD exploit."
+  },
+  {
+    "id": 2,
+    "date": "July 22, 2025",
+    "title": "Palera1n Team Updates Checkm8 for A11 Devices",
+    "summary": "The Palera1n jailbreak has been updated to support the latest iOS 17 revisions on A11 devices, solidifying its position as a reliable tool.",
+    "content": "The team behind the Palera1n jailbreak has released a new update, extending its compatibility to the latest minor versions of iOS 17 for all devices with the A11 Bionic chip and older. This update leverages the unpatchable checkm8 bootrom exploit, ensuring that devices like the iPhone X will remain jailbreakable for life. The update also brings stability improvements and fixes several bugs related to tweak injection and battery drain. Users can download the latest version from the official Palera1n website."
+  },
+  {
+    "id": 3,
+    "date": "July 18, 2025",
+    "title": "Community Spotlight: Top 5 Tweaks for Dopamine JB",
+    "summary": "We highlight five must-have tweaks that enhance the user experience on the popular Dopamine jailbreak for iOS 15-16.",
+    "content": "For those using the Dopamine jailbreak on iOS 15 and 16, customizing your device is key. We've polled the community and compiled a list of the top 5 essential tweaks. Coming in at number one is \"Atria,\" a home screen layout customizer. It's followed by \"Velvet 2\" for notification styling, \"Axon\" for lock screen organization, \"Snowboard\" for theming, and \"CopyLog\" for advanced clipboard management. These tweaks not only enhance aesthetics but also add powerful functionality to your jailbroken device."
+  }
+]
