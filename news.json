@@ -1,12 +1,5 @@
 [ 
   {
-    "id": 5,
-    "date": "July 25, 2025",
-    "title": "Understanding the Polling Method: How Our Site Stays Live",
-    "summary": "A behind-the-scenes look at the new polling technology that keeps our news feed automatically updated without requiring a page reload.",
-    "content": "We've recently upgraded our site to use a JavaScript polling method. Every 30 seconds, your browser quietly checks our `news.json` file for any changes. If a new article is found, the page automatically re-renders the news section to display the latest content instantly. This ensures you're always seeing the most current information without any extra effort. This is a step towards making our platform as dynamic and responsive as the jailbreak community itself."
-  },
-  {
     "id": 4,
     "date": "July 25, 2025",
     "title": "New Site Feature: Dynamic News Loading!",
