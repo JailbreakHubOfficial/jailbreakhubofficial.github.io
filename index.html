@@ -1,11 +1,9 @@
-<!DOCTYPE html>
+[⚠️ Suspicious Content] <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jailbreak Hub</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2450188455868173"
-     crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,6 +98,28 @@
             width: 100%;
             height: 100%;
         }
+        /* Pagination Styles */
+        .pagination-btn {
+            background-color: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+        }
+        .pagination-btn:hover:not(:disabled) {
+            background-color: #00ff99;
+            color: #1a1a1a;
+        }
+        .pagination-btn.active {
+            background-color: #00ff99;
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -156,6 +176,8 @@
             <div id="news-archive-container" class="space-y-12 max-w-4xl mx-auto">
                  <p class="text-center text-gray-400">Loading news...</p>
             </div>
+            <!-- Pagination Controls -->
+            <div id="pagination-container" class="flex justify-center items-center space-x-2 mt-12"></div>
         </section>
 
         <!-- Guides Page -->
@@ -311,8 +333,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // --- State Variable ---
-            let currentNewsDataString = ''; // Holds a string copy of the current news data to check for changes.
+            // --- State Variables ---
+            let currentNewsDataString = '';
+            let fullNewsData = [];
+            let currentPage = 1;
+            const articlesPerPage = 3;
 
             // --- Page Elements ---
             const navLinks = document.querySelectorAll('.nav-link');
@@ -321,14 +346,12 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const latestNewsContainer = document.getElementById('latest-news-container');
             const newsArchiveContainer = document.getElementById('news-archive-container');
+            const paginationContainer = document.getElementById('pagination-container');
 
-            // --- News Rendering Functions ---
+            // --- News and Pagination Rendering ---
             function renderNews(newsData) {
-                // Clear existing content
+                // --- Render Homepage News (always first 3) ---
                 latestNewsContainer.innerHTML = '';
-                newsArchiveContainer.innerHTML = '';
-
-                // Populate Latest News on Homepage (first 3 articles)
                 const latestArticles = newsData.slice(0, 3);
                 latestArticles.forEach(article => {
                     const articleHtml = `
@@ -344,8 +367,13 @@
                     latestNewsContainer.innerHTML += articleHtml;
                 });
 
-                // Populate Full News Archive on News Page
-                newsData.forEach((article, index) => {
+                // --- Render News Archive (Paginated) ---
+                newsArchiveContainer.innerHTML = '';
+                const startIndex = (currentPage - 1) * articlesPerPage;
+                const endIndex = startIndex + articlesPerPage;
+                const paginatedArticles = newsData.slice(startIndex, endIndex);
+                
+                paginatedArticles.forEach(article => {
                     const articleHtml = `
                         <article>
                             <p class="text-sm text-gray-400 mb-2">${article.date}</p>
@@ -355,6 +383,27 @@
                     `;
                     newsArchiveContainer.innerHTML += articleHtml;
                 });
+            }
+
+            function renderPagination(totalArticles) {
+                paginationContainer.innerHTML = '';
+                const totalPages = Math.ceil(totalArticles / articlesPerPage);
+
+                if (totalPages <= 1) return; // Don't render pagination if there's only one page
+
+                // Previous Button
+                const prevDisabled = currentPage === 1;
+                paginationContainer.innerHTML += `<button class="pagination-btn" data-page="prev" ${prevDisabled ? 'disabled' : ''}>&larr; Previous</button>`;
+
+                // Page Number Buttons
+                for (let i = 1; i <= totalPages; i++) {
+                    const activeClass = i === currentPage ? 'active' : '';
+                    paginationContainer.innerHTML += `<button class="pagination-btn ${activeClass}" data-page="${i}">${i}</button>`;
+                }
+
+                // Next Button
+                const nextDisabled = currentPage === totalPages;
+                paginationContainer.innerHTML += `<button class="pagination-btn" data-page="next" ${nextDisabled ? 'disabled' : ''}>Next &rarr;</button>`;
             }
 
             // --- Page Navigation Logic ---
@@ -384,23 +433,21 @@
             // --- Data Loading and Polling ---
             async function checkForNewsUpdates() {
                 try {
-                    // Fetch the external JSON file. Add a cache-busting parameter to prevent the browser from serving an old version.
                     const response = await fetch(`news.json?v=${new Date().getTime()}`);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    
                     const newsData = await response.json();
                     const newNewsDataString = JSON.stringify(newsData);
 
-                    // Only re-render the page if the data has actually changed.
                     if (newNewsDataString !== currentNewsDataString) {
                         console.log('News update found! Rendering new content.');
-                        currentNewsDataString = newNewsDataString; // Update our state
-                        renderNews(newsData);
+                        currentNewsDataString = newNewsDataString;
+                        fullNewsData = newsData; // Store the full dataset
+                        renderNews(fullNewsData);
+                        renderPagination(fullNewsData.length);
                     } else {
                          console.log('No new news. Checked at ' + new Date().toLocaleTimeString());
                     }
-
                 } catch (error) {
                     console.error("Could not fetch or render news data:", error);
                     latestNewsContainer.innerHTML = `<p class="text-red-500 text-center col-span-3">Failed to load news articles.</p>`;
@@ -410,26 +457,49 @@
 
             // --- Event Delegation for Navigation ---
             document.body.addEventListener('click', function(e) {
-                // Find the closest ancestor link that is a .page-link
                 const link = e.target.closest('a.page-link');
-
-                // If a page-link was clicked
                 if (link) {
-                    e.preventDefault(); // Prevent the default link behavior
+                    e.preventDefault();
                     const targetPageId = link.getAttribute('href').substring(1);
                     if (targetPageId) {
+                        // Reset to page 1 when navigating to the news page from somewhere else
+                        if (targetPageId === 'news') {
+                            currentPage = 1;
+                            renderNews(fullNewsData);
+                            renderPagination(fullNewsData.length);
+                        }
                         showPage(targetPageId);
                     }
                 }
             });
 
+            // --- Event Listener for Pagination ---
+            paginationContainer.addEventListener('click', function(e) {
+                const target = e.target.closest('.pagination-btn');
+                if (!target || target.disabled) return;
+
+                const pageAction = target.dataset.page;
+                
+                if (pageAction === 'prev') {
+                    if (currentPage > 1) currentPage--;
+                } else if (pageAction === 'next') {
+                    if (currentPage < Math.ceil(fullNewsData.length / articlesPerPage)) currentPage++;
+                } else {
+                    currentPage = parseInt(pageAction);
+                }
+                
+                renderNews(fullNewsData);
+                renderPagination(fullNewsData.length);
+                window.scrollTo(0, 0); // Scroll to top of page after changing page
+            });
+
+
             // --- Initial Load ---
-            checkForNewsUpdates(); // Load news immediately on page load
+            checkForNewsUpdates();
             const initialPage = window.location.hash.substring(1) || 'home';
             showPage(initialPage);
 
             // --- Set up Polling ---
-            // Check for new articles every 10 seconds (10000 milliseconds)
             setInterval(checkForNewsUpdates, 10000);
         });
     </script>
