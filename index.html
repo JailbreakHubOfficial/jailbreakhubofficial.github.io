@@ -225,6 +225,27 @@
         <!-- Status Page -->
         <section id="status" class="page">
             <h1 class="text-4xl font-bold mb-8 text-center">Jailbreak Status</h1>
+            
+            <!-- Jailbreak Compatibility Checker -->
+            <div class="max-w-2xl mx-auto bg-gray-800/50 p-6 rounded-lg mb-12">
+                <h2 class="text-2xl font-bold mb-4 text-center">Jailbreak Compatibility Checker</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="checker-device-input" class="block text-sm font-medium text-gray-300 mb-1">Device Model</label>
+                        <input type="text" id="checker-device-input" placeholder="e.g., iPhone X" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label for="checker-ios-input" class="block text-sm font-medium text-gray-300 mb-1">iOS Version</label>
+                        <input type="text" id="checker-ios-input" placeholder="e.g., 11.1.2" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500">
+                    </div>
+                </div>
+                <button id="checker-button" class="w-full bg-accent-color text-black font-bold py-2 px-4 rounded-md hover:bg-green-400 transition-colors duration-300">Check Status</button>
+                <div id="checker-result-area" class="mt-4 p-4 bg-gray-900/50 rounded-md min-h-[4rem]">
+                    <p id="checker-result-text" class="text-gray-300">Enter your device and iOS version to check for jailbreak availability.</p>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-bold mb-8 text-center">Compatibility Chart</h2>
             <div class="overflow-x-auto">
                 <table class="min-w-full text-left text-sm whitespace-nowrap status-table rounded-lg overflow-hidden">
                     <thead class="font-semibold text-white uppercase tracking-wider">
@@ -339,6 +360,23 @@
             let currentPage = 1;
             const articlesPerPage = 3;
 
+            // --- Jailbreak Data for Checker ---
+            const jailbreakData = {
+                'iphone 14': { '16': 'Dopamine', '15': 'Dopamine / XinaA15' },
+                'iphone 13': { '16': 'Dopamine', '15': 'Dopamine / XinaA15' },
+                'iphone 12': { '16': 'Dopamine', '15': 'Dopamine / XinaA15' },
+                'iphone 11': { '15': 'Dopamine / XinaA15', '14': 'Unc0ver / Taurine' },
+                'iphone xs': { '15': 'Dopamine / XinaA15', '14': 'Unc0ver / Taurine' },
+                'iphone xr': { '15': 'Dopamine / XinaA15', '14': 'Unc0ver / Taurine' },
+                'iphone x': { '17': 'Palera1n', '16': 'Palera1n', '15': 'Palera1n', '14': 'checkra1n', '13': 'checkra1n / Unc0ver', '12': 'checkra1n / Unc0ver', '11': 'Unc0ver / Electra' },
+                'iphone 8': { '17': 'Palera1n', '16': 'Palera1n', '15': 'Palera1n', '14': 'checkra1n', '13': 'checkra1n / Unc0ver', '12': 'checkra1n / Unc0ver', '11': 'Unc0ver / Electra' },
+                'iphone 8 plus': { '17': 'Palera1n', '16': 'Palera1n', '15': 'Palera1n', '14': 'checkra1n', '13': 'checkra1n / Unc0ver', '12': 'checkra1n / Unc0ver', '11': 'Unc0ver / Electra' },
+                'iphone 7': { '15': 'Palera1n', '14': 'checkra1n', '13': 'checkra1n / Unc0ver', '12': 'checkra1n / Unc0ver' },
+                'iphone 7 plus': { '15': 'Palera1n', '14': 'checkra1n', '13': 'checkra1n / Unc0ver', '12': 'checkra1n / Unc0ver' },
+                'iphone 6s': { '15': 'Palera1n', '14': 'checkra1n', '13': 'checkra1n / Unc0ver', '12': 'checkra1n / Unc0ver', '11': 'Unc0ver / Electra' },
+                'iphone 6s plus': { '15': 'Palera1n', '14': 'checkra1n', '13': 'checkra1n / Unc0ver', '12': 'checkra1n / Unc0ver', '11': 'Unc0ver / Electra' }
+            };
+
             // --- Page Elements ---
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page');
@@ -347,6 +385,11 @@
             const latestNewsContainer = document.getElementById('latest-news-container');
             const newsArchiveContainer = document.getElementById('news-archive-container');
             const paginationContainer = document.getElementById('pagination-container');
+            const checkerDeviceInput = document.getElementById('checker-device-input');
+            const checkerIosInput = document.getElementById('checker-ios-input');
+            const checkerButton = document.getElementById('checker-button');
+            const checkerResultText = document.getElementById('checker-result-text');
+
 
             // --- News and Pagination Rendering ---
             function renderNews(newsData) {
@@ -491,6 +534,35 @@
                 renderNews(fullNewsData);
                 renderPagination(fullNewsData.length);
                 window.scrollTo(0, 0); // Scroll to top of page after changing page
+            });
+            
+            // --- Jailbreak Checker Logic ---
+            checkerButton.addEventListener('click', function() {
+                const device = checkerDeviceInput.value.toLowerCase().trim();
+                const iosVersion = checkerIosInput.value.trim();
+                const majorIosVersion = iosVersion.split('.')[0];
+
+                if (!device || !iosVersion) {
+                    checkerResultText.textContent = 'Please enter both a device and iOS version.';
+                    checkerResultText.className = 'text-gray-300';
+                    return;
+                }
+
+                const deviceData = jailbreakData[device];
+
+                if (deviceData) {
+                    const jailbreakTool = deviceData[majorIosVersion];
+                    if (jailbreakTool) {
+                        checkerResultText.textContent = `Supported by ${jailbreakTool}.`;
+                        checkerResultText.className = 'status-supported';
+                    } else {
+                        checkerResultText.textContent = 'Not Supported for this iOS version.';
+                        checkerResultText.className = 'status-not-supported';
+                    }
+                } else {
+                    checkerResultText.textContent = 'Compatibility data not found for this device.';
+                    checkerResultText.className = 'status-in-progress';
+                }
             });
 
 
