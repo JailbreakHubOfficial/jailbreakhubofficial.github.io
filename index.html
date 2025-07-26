@@ -121,34 +121,9 @@
 
             <div class="border-t border-gray-700 pt-12">
                 <h2 class="text-3xl font-bold text-center mb-8">Latest News</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Latest Post 1 -->
-                    <div class="news-card rounded-lg overflow-hidden">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 mb-2">July 24, 2025</p>
-                            <h3 class="text-xl font-bold mb-3">CoreTrust Bug Discovery Sparks Hope for iOS 18</h3>
-                            <p class="text-gray-300 mb-4">A newly discovered vulnerability in CoreTrust could pave the way for a jailbreak on Apple's latest OS. Researchers are cautiously optimistic.</p>
-                            <a href="#news" data-article="1" class="font-semibold accent-color page-link">Read More &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Latest Post 2 -->
-                    <div class="news-card rounded-lg overflow-hidden">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 mb-2">July 22, 2025</p>
-                            <h3 class="text-xl font-bold mb-3">Palera1n Team Updates Checkm8 for A11 Devices</h3>
-                            <p class="text-gray-300 mb-4">The Palera1n jailbreak has been updated to support the latest iOS 17 revisions on A11 devices, solidifying its position as a reliable tool.</p>
-                            <a href="#news" data-article="2" class="font-semibold accent-color page-link">Read More &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Latest Post 3 -->
-                    <div class="news-card rounded-lg overflow-hidden">
-                        <div class="p-6">
-                            <p class="text-sm text-gray-400 mb-2">July 18, 2025</p>
-                            <h3 class="text-xl font-bold mb-3">Community Spotlight: Top 5 Tweaks for Dopamine JB</h3>
-                            <p class="text-gray-300 mb-4">We highlight five must-have tweaks that enhance the user experience on the popular Dopamine jailbreak for iOS 15-16.</p>
-                            <a href="#news" data-article="3" class="font-semibold accent-color page-link">Read More &rarr;</a>
-                        </div>
-                    </div>
+                <!-- News cards will be dynamically inserted here -->
+                <div id="latest-news-container" class="grid md:grid-cols-3 gap-8">
+                    <p class="text-center col-span-3 text-gray-400">Loading news...</p>
                 </div>
             </div>
         </section>
@@ -156,31 +131,9 @@
         <!-- News Page -->
         <section id="news" class="page">
             <h1 class="text-4xl font-bold mb-8 text-center">News Archive</h1>
-            <div class="space-y-12 max-w-4xl mx-auto">
-                <!-- Article 1 -->
-                <article>
-                    <p class="text-sm text-gray-400 mb-2">July 24, 2025</p>
-                    <h2 class="text-3xl font-bold mb-3 accent-color">CoreTrust Bug Discovery Sparks Hope for iOS 18</h2>
-                    <p class="text-gray-300 leading-relaxed">A significant vulnerability has been identified by security researchers within Apple's CoreTrust service, a critical component responsible for signature validation across iOS. The bug, which affects versions up to the current iOS 18 beta, could potentially allow for the bypassing of code signing checks. While a full jailbreak requires chaining multiple exploits, this discovery is a monumental first step. The community is buzzing with excitement, though developers urge patience as much more work is needed to develop a stable, user-friendly tool. This is the most promising lead for a modern jailbreak since the KFD exploit.</p>
-                </article>
-                <!-- Article 2 -->
-                <article>
-                    <p class="text-sm text-gray-400 mb-2">July 22, 2025</p>
-                    <h2 class="text-3xl font-bold mb-3 accent-color">Palera1n Team Updates Checkm8 for A11 Devices on iOS 17</h2>
-                    <p class="text-gray-300 leading-relaxed">The team behind the Palera1n jailbreak has released a new update, extending its compatibility to the latest minor versions of iOS 17 for all devices with the A11 Bionic chip and older. This update leverages the unpatchable checkm8 bootrom exploit, ensuring that devices like the iPhone X will remain jailbreakable for life. The update also brings stability improvements and fixes several bugs related to tweak injection and battery drain. Users can download the latest version from the official Palera1n website.</p>
-                </article>
-                <!-- Article 3 -->
-                <article>
-                    <p class="text-sm text-gray-400 mb-2">July 18, 2025</p>
-                    <h2 class="text-3xl font-bold mb-3 accent-color">Community Spotlight: Top 5 Tweaks for Dopamine JB</h2>
-                    <p class="text-gray-300 leading-relaxed">For those using the Dopamine jailbreak on iOS 15 and 16, customizing your device is key. We've polled the community and compiled a list of the top 5 essential tweaks. Coming in at number one is "Atria," a home screen layout customizer. It's followed by "Velvet 2" for notification styling, "Axon" for lock screen organization, "Snowboard" for theming, and "CopyLog" for advanced clipboard management. These tweaks not only enhance aesthetics but also add powerful functionality to your jailbroken device.</p>
-                </article>
-                <!-- Article 4 -->
-                <article>
-                    <p class="text-sm text-gray-400 mb-2">July 15, 2025</p>
-                    <h2 class="text-3xl font-bold mb-3 accent-color">The State of Tweak Development in a Rootless World</h2>
-                    <p class="text-gray-300 leading-relaxed">Modern jailbreaks like Dopamine and Palera1n are "rootless," meaning they don't grant full access to the root filesystem. This has shifted how developers create tweaks. While it enhances security, it also requires developers to update their packages to work with the new file structure. We spoke to several prominent developers who shared their insights on the challenges and benefits of this new era, concluding that while the learning curve is steep, the future of tweaking is more secure and stable than ever.</p>
-                </article>
+            <!-- Full news articles will be dynamically inserted here -->
+            <div id="news-archive-container" class="space-y-12 max-w-4xl mx-auto">
+                 <p class="text-center text-gray-400">Loading news...</p>
             </div>
         </section>
 
@@ -313,64 +266,123 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // --- State Variable ---
+            let currentNewsDataString = ''; // Holds a string copy of the current news data to check for changes.
+
+            // --- Page Elements ---
             const pageLinks = document.querySelectorAll('.page-link');
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
+            const latestNewsContainer = document.getElementById('latest-news-container');
+            const newsArchiveContainer = document.getElementById('news-archive-container');
+
+            // --- News Rendering Functions ---
+            function renderNews(newsData) {
+                // Clear existing content
+                latestNewsContainer.innerHTML = '';
+                newsArchiveContainer.innerHTML = '';
+
+                // Populate Latest News on Homepage (first 3 articles)
+                const latestArticles = newsData.slice(0, 3);
+                latestArticles.forEach(article => {
+                    const articleHtml = `
+                        <div class="news-card rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <p class="text-sm text-gray-400 mb-2">${article.date}</p>
+                                <h3 class="text-xl font-bold mb-3">${article.title}</h3>
+                                <p class="text-gray-300 mb-4">${article.summary}</p>
+                                <a href="#news" class="font-semibold accent-color page-link">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    `;
+                    latestNewsContainer.innerHTML += articleHtml;
+                });
+
+                // Populate Full News Archive on News Page
+                newsData.forEach(article => {
+                    const articleHtml = `
+                        <article>
+                            <p class="text-sm text-gray-400 mb-2">${article.date}</p>
+                            <h2 class="text-3xl font-bold mb-3 accent-color">${article.title}</h2>
+                            <p class="text-gray-300 leading-relaxed">${article.content}</p>
+                        </article>
+                    `;
+                    newsArchiveContainer.innerHTML += articleHtml;
+                });
+                
+                // Re-add event listeners to the newly created page links
+                addPageLinkListeners();
+            }
 
             // --- Page Navigation Logic ---
             const showPage = (pageId) => {
-                // Hide all pages
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-
-                // Show the target page
+                pages.forEach(page => page.classList.remove('active'));
                 const targetPage = document.getElementById(pageId);
                 if (targetPage) {
                     targetPage.classList.add('active');
-                    window.scrollTo(0, 0); // Scroll to top on page change
+                    window.scrollTo(0, 0);
                 }
-
-                // Update active state for nav links
                 navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${pageId}`) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
+                    link.classList.toggle('active', link.getAttribute('href') === `#${pageId}`);
                 });
-                
-                // Close mobile menu on navigation
                 mobileMenu.classList.add('hidden');
             };
 
-            pageLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetPageId = this.getAttribute('href').substring(1);
-                    showPage(targetPageId);
-                    
-                    // Special handling for links that point to a specific article from another page
-                    const articleId = this.dataset.article;
-                    if(articleId) {
-                       // In a real app, you might scroll to the article.
-                       // For this demo, simply showing the page is enough.
-                       console.log(`Navigating to news, should highlight article ${articleId}`);
-                    }
+            function addPageLinkListeners() {
+                document.querySelectorAll('.page-link').forEach(link => {
+                    const newLink = link.cloneNode(true);
+                    link.parentNode.replaceChild(newLink, link);
+
+                    newLink.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetPageId = this.getAttribute('href').substring(1);
+                        showPage(targetPageId);
+                    });
                 });
-            });
+            }
             
             // --- Mobile Menu Toggle ---
             mobileMenuButton.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // --- Initial Page Load ---
-            // Check if URL has a hash and show the corresponding page
+            // --- Data Loading and Polling ---
+            async function checkForNewsUpdates() {
+                try {
+                    // Fetch the external JSON file. Add a cache-busting parameter to prevent the browser from serving an old version.
+                    const response = await fetch(`news.json?v=${new Date().getTime()}`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const newsData = await response.json();
+                    const newNewsDataString = JSON.stringify(newsData);
+
+                    // Only re-render the page if the data has actually changed.
+                    if (newNewsDataString !== currentNewsDataString) {
+                        console.log('News update found! Rendering new content.');
+                        currentNewsDataString = newNewsDataString; // Update our state
+                        renderNews(newsData);
+                    } else {
+                         console.log('No new news. Checked at ' + new Date().toLocaleTimeString());
+                    }
+
+                } catch (error) {
+                    console.error("Could not fetch or render news data:", error);
+                    latestNewsContainer.innerHTML = `<p class="text-red-500 text-center col-span-3">Failed to load news articles.</p>`;
+                    newsArchiveContainer.innerHTML = `<p class="text-red-500 text-center">Failed to load news archive.</p>`;
+                }
+            }
+
+            // --- Initial Load ---
+            checkForNewsUpdates(); // Load news immediately on page load
             const initialPage = window.location.hash.substring(1) || 'home';
             showPage(initialPage);
+
+            // --- Set up Polling ---
+            // Check for new articles every 10 seconds (10000 milliseconds)
+            setInterval(checkForNewsUpdates, 10000);
         });
     </script>
 
