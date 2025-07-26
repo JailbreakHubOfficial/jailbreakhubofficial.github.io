@@ -1,5 +1,12 @@
 [ 
   {
+    "id": 5,
+    "date": "July 26, 2025",
+    "title": "Throwback: Revisiting the iOS 11 Jailbreak on iPhone 8 & X",
+    "summary": "A look back at the golden era of iOS 11, where devices like the iPhone 8 and the revolutionary iPhone X were jailbreakable with powerful tools like Unc0ver and Electra.",
+    "content": "The iPhone 8 and iPhone X, both released with iOS 11, represent a significant chapter in jailbreaking history. For users on this firmware, two primary tools emerged: Electra and the later, more refined Unc0ver. These semi-untethered jailbreaks gave users deep customization options on Apple's A11 Bionic chip. While the checkm8-based Palera1n jailbreak now covers the iPhone 8 and X on much newer iOS versions, the original iOS 11 jailbreaks are a nostalgic reminder of a vibrant period in the community's history."
+  },
+  {
     "id": 4,
     "date": "July 25, 2025",
     "title": "New Site Feature: Dynamic News Loading!",
