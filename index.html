@@ -385,7 +385,8 @@
                 <h1 class="text-4xl font-bold mb-2 text-center">Contact Us</h1>
                 <p class="text-center text-gray-400 mb-8">Please submit your inquiry using the form below and we will get in touch with you shortly.</p>
 
-                <form action="http://localhost:3000/send-message" method="POST" class="space-y-6">
+                <!-- I've added an ID to the form -->
+                <form id="contact-form" class="space-y-6">
                     <div>
                         <label for="name" class="sr-only">Your Name</label>
                         <input type="text" name="name" id="name" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500" placeholder="Your Name *">
@@ -416,6 +417,8 @@
                         </button>
                     </div>
                 </form>
+                 <!-- This div is for showing the success or error message -->
+                <div id="form-status" class="mt-6 text-center"></div>
             </div>
         </section>
 
@@ -575,6 +578,8 @@
             const checkerIosInput = document.getElementById('checker-ios-input');
             const checkerButton = document.getElementById('checker-button');
             const checkerResultText = document.getElementById('checker-result-text');
+            const contactForm = document.getElementById('contact-form'); // New element
+            const formStatus = document.getElementById('form-status'); // New element
 
 
             // --- News and Pagination Rendering ---
@@ -721,6 +726,46 @@
                 renderPagination(fullNewsData.length);
                 window.scrollTo(0, 0); // Scroll to top of page after changing page
             });
+            
+            // --- NEW: Contact Form Submission Logic ---
+            if(contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault(); // Prevent the default page reload
+                    
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = 'Sending...';
+                    formStatus.innerHTML = ''; // Clear previous status
+                    
+                    const formData = new FormData(contactForm);
+                    
+                    try {
+                        const response = await fetch('http://localhost:3000/send-message', {
+                            method: 'POST',
+                            body: new URLSearchParams(formData) // Send as form-urlencoded data
+                        });
+
+                        if (response.ok) {
+                            // Success
+                            formStatus.innerHTML = `<p class="status-supported">Message sent successfully!</p>`;
+                            contactForm.reset(); // Clear the form fields
+                        } else {
+                            // Server error
+                             formStatus.innerHTML = `<p class="status-not-supported">An error occurred. Please try again later.</p>`;
+                        }
+                    } catch (error) {
+                        // Network error
+                        console.error('Contact form submission error:', error);
+                        formStatus.innerHTML = `<p class="status-not-supported">Could not send message. Please check your connection.</p>`;
+                    } finally {
+                        // Re-enable the button
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                    }
+                });
+            }
+
 
             // --- Jailbreak Checker Logic ---
             checkerButton.addEventListener('click', function() {
