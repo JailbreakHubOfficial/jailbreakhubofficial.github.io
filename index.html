@@ -741,7 +741,7 @@
                     const formData = new FormData(contactForm);
                     
                     try {
-                        const response = await fetch('https://server-back-end.vercel.app', {
+                        const response = await fetch('https://server-back-end.vercel.app/send-message', {
                             method: 'POST',
                             body: new URLSearchParams(formData) // Send as form-urlencoded data
                         });
@@ -810,4 +810,5 @@
 </body>
 
 </html>
+
 
