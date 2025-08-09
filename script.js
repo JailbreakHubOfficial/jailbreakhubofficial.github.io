@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const checkerIosInput = document.getElementById('checker-ios-input');
     const checkerButton = document.getElementById('checker-button');
     const checkerResultText = document.getElementById('checker-result-text');
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
 
 
     // --- News and Pagination Rendering ---
@@ -209,6 +211,26 @@ document.addEventListener('DOMContentLoaded', function () {
             checkerResultText.className = 'status-in-progress';
         }
     });
+
+    // --- Contact Form Logic ---
+    if(contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Sending...';
+            formStatus.innerHTML = '';
+
+            // Simulate sending the form
+            setTimeout(() => {
+                formStatus.innerHTML = `<p class="status-supported">Message sent successfully!</p>`;
+                contactForm.reset();
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }, 1500);
+        });
+    }
 
 
     // --- Initial Load ---
