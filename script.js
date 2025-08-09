@@ -214,21 +214,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Contact Form Logic ---
     if(contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.innerHTML;
             submitButton.disabled = true;
             submitButton.innerHTML = 'Sending...';
             formStatus.innerHTML = '';
+            
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch('http://localhost:3000/send-message', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                });
 
-            // Simulate sending the form
-            setTimeout(() => {
-                formStatus.innerHTML = `<p class="status-supported">Message sent successfully!</p>`;
-                contactForm.reset();
+                if (response.ok) {
+                    formStatus.innerHTML = `<p class="status-supported">Message sent successfully!</p>`;
+                    contactForm.reset();
+                } else {
+                    formStatus.innerHTML = `<p class="status-not-supported">An error occurred. Please try again later.</p>`;
+                }
+            } catch (error) {
+                console.error('Contact form submission error:', error);
+                formStatus.innerHTML = `<p class="status-not-supported">Could not send message. Please check your connection.</p>`;
+            } finally {
                 submitButton.disabled = false;
                 submitButton.innerHTML = originalButtonText;
-            }, 1500);
+            }
         });
     }
 
