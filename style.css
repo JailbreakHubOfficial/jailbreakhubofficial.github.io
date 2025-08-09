@@ -1,0 +1,111 @@
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    /* Disable text selection */
+    user-select: none;
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none;    /* For Firefox */
+    -ms-user-select: none;     /* For IE/Edge */
+}
+.accent-color {
+    color: #00ff99;
+}
+.bg-accent-color {
+    background-color: #00ff99;
+}
+.border-accent-color {
+    border-color: #00ff99;
+}
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00ff99;
+    transition: width 0.3s ease;
+}
+.nav-link.active,
+.nav-link:hover {
+    color: #00ff99;
+}
+.nav-link.active::after,
+.nav-link:hover::after {
+    width: 100%;
+}
+.page {
+    display: none;
+}
+.page.active {
+    display: block;
+}
+.news-card {
+    background-color: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 153, 0.1);
+}
+.status-table th {
+    background-color: #2a2a2a;
+}
+.status-table td {
+    background-color: #222222;
+}
+.status-supported {
+    color: #00ff99;
+    font-weight: 600;
+}
+.status-in-progress {
+    color: #ffcc00;
+    font-weight: 600;
+}
+.status-not-supported {
+    color: #ff3b30;
+    font-weight: 600;
+}
+/* Style for responsive YouTube embeds */
+.aspect-ratio-16-9 {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+.aspect-ratio-16-9 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* Pagination Styles */
+.pagination-btn {
+    background-color: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+.pagination-btn:hover:not(:disabled) {
+    background-color: #00ff99;
+    color: #1a1a1a;
+}
+.pagination-btn.active {
+    background-color: #00ff99;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
