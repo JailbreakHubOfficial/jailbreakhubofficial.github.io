@@ -268,6 +268,48 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="max-w-2xl mx-auto">
+                <h1 class="text-4xl font-bold mb-2 text-center">Contact Us</h1>
+                <p class="text-center text-gray-400 mb-8">Please submit your inquiry using the form below and we will get in touch with you shortly.</p>
+
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="sr-only">Your Name</label>
+                        <input type="text" name="name" id="name" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500" placeholder="Your Name *">
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Your Email</label>
+                        <input type="email" name="email" id="email" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500" placeholder="Your Email *">
+                    </div>
+                    <div>
+                        <label for="subject" class="sr-only">Your Subject</label>
+                        <input type="text" name="subject" id="subject" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500" placeholder="Your Subject *">
+                    </div>
+                    <div>
+                        <label for="message" class="sr-only">Your Message</label>
+                        <textarea name="message" id="message" rows="6" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500" placeholder="Your Message *"></textarea>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="consent" name="consent" type="checkbox" required class="focus:ring-green-500 h-4 w-4 text-green-600 bg-gray-700 border-gray-600 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="consent" class="text-gray-300">I consent to having this website store my submitted information so they can respond to my inquiry</label>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-accent-color text-black font-bold py-3 px-4 rounded-md hover:bg-green-400 transition-colors duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+                <!-- This div is for showing the success or error message -->
+                <div id="form-status" class="mt-6 text-center"></div>
+            </div>
+        </section>
 
     </main>
 
@@ -278,7 +320,7 @@
                 <p class="mb-4 sm:mb-0">&copy; 2025 Jailbreak Hub. All rights reserved.</p>
                 <div class="flex space-x-4">
                     <a href="#privacy" class="hover:text-white transition-colors page-link">Privacy Policy</a>
-                    <a href="#links" class="hover:text-white transition-colors page-link">Contact</a>
+                    <a href="#contact" class="hover:text-white transition-colors page-link">Contact</a>
                 </div>
             </div>
         </div>
