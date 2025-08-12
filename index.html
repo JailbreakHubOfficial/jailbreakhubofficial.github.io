@@ -10,9 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen">
 
-    <!-- Header and Navigation -->
     <header class="sticky top-0 z-50 bg-opacity-80 backdrop-blur-md border-b border-gray-700">
         <div class="container mx-auto px-4">
             <nav class="flex justify-between items-center py-4">
@@ -29,7 +28,6 @@
                 </button>
             </nav>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2">
             <a href="#home" class="block nav-link page-link active">Home</a>
             <a href="#news" class="block nav-link page-link">News</a>
@@ -39,9 +37,8 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8 md:py-12">
+    <main class="container mx-auto px-4 py-8 md:py-12 flex-grow">
 
-        <!-- Home Page -->
         <section id="home" class="page active">
             <div class="text-center py-16 md:py-24">
                 <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">Anticipating the Next Jailbreak</h1>
@@ -50,29 +47,23 @@
 
             <div class="border-t border-gray-700 pt-12">
                 <h2 class="text-3xl font-bold text-center mb-8">Latest News</h2>
-                <!-- News cards will be dynamically inserted here -->
                 <div id="latest-news-container" class="grid md:grid-cols-3 gap-8">
                     <p class="text-center col-span-3 text-gray-400">Loading news...</p>
                 </div>
             </div>
         </section>
 
-        <!-- News Page -->
         <section id="news" class="page">
             <h1 class="text-4xl font-bold mb-8 text-center">News Archive</h1>
-            <!-- Full news articles will be dynamically inserted here -->
             <div id="news-archive-container" class="space-y-12 max-w-4xl mx-auto">
                  <p class="text-center text-gray-400">Loading news...</p>
             </div>
-            <!-- Pagination Controls -->
             <div id="pagination-container" class="flex justify-center items-center space-x-2 mt-12"></div>
         </section>
 
-        <!-- Guides Page -->
         <section id="guides" class="page">
             <h1 class="text-4xl font-bold mb-8 text-center">Video Guides & Tutorials</h1>
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Guide 1 -->
                 <div class="news-card rounded-lg overflow-hidden">
                     <div class="aspect-ratio-16-9">
                         <iframe src="https://www.youtube.com/embed/enZeo4qXzN8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -82,7 +73,6 @@
                         <p class="text-gray-300">This essential guide covers the first steps you must take before any jailbreak attempt, including backing up your data and checking compatibility.</p>
                     </div>
                 </div>
-                <!-- Guide 2 -->
                 <div class="news-card rounded-lg overflow-hidden">
                     <div class="aspect-ratio-16-9">
                         <iframe src="https://www.youtube.com/embed/K72ptMpp2ck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -97,7 +87,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- Guide 3 -->
                 <div class="news-card rounded-lg overflow-hidden">
                     <div class="aspect-ratio-16-9">
                         <iframe src="https://www.youtube.com/embed/7FbgibSUdb0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -110,9 +99,7 @@
             </div>
         </section>
 
-        <!-- Status Page -->
         <section id="status" class="page">
-            <!-- Jailbreak Compatibility Checker -->
             <div class="max-w-2xl mx-auto bg-gray-800/50 p-8 rounded-lg mb-12">
                 <h1 class="text-4xl font-bold mb-2 text-center">Jailbreak Status</h1>
                 <p class="text-center text-gray-400 mb-6">Use the checker below for a quick result or consult the chart for full details.</p>
@@ -192,11 +179,9 @@
             </div>
         </section>
 
-        <!-- Links Page -->
         <section id="links" class="page">
             <h1 class="text-4xl font-bold mb-8 text-center">Community Links</h1>
             <div class="max-w-md mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-                <!-- Discord -->
                 <a href="https://discord.com/channels/349243932447604736/688121419980341282" target="_blank" rel="noopener noreferrer" class="group">
                     <div class="bg-gray-800/50 p-8 rounded-lg group-hover:bg-accent-color transition-colors duration-300">
                         <svg class="w-16 h-16 mx-auto text-accent-color group-hover:text-black transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="discord-title">
@@ -206,7 +191,6 @@
                     </div>
                     <p class="mt-4 font-semibold text-lg">Discord</p>
                 </a>
-                <!-- Reddit -->
                 <a href="https://www.reddit.com/r/jailbreak/" target="_blank" rel="noopener noreferrer" class="group">
                     <div class="bg-gray-800/50 p-8 rounded-lg group-hover:bg-accent-color transition-colors duration-300">
                         <svg class="w-16 h-16 mx-auto text-accent-color group-hover:text-black transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="reddit-title">
@@ -216,7 +200,6 @@
                     </div>
                     <p class="mt-4 font-semibold text-lg">Reddit</p>
                 </a>
-                <!-- Twitter/X -->
                 <a href="https://x.com/Jailbreak" target="_blank" rel="noopener noreferrer" class="group">
                     <div class="bg-gray-800/50 p-8 rounded-lg group-hover:bg-accent-color transition-colors duration-300">
                         <svg class="w-16 h-16 mx-auto text-accent-color group-hover:text-black transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="twitter-title">
@@ -229,17 +212,16 @@
             </div>
         </section>
 
-        <!-- Privacy Policy Page -->
         <section id="privacy" class="page">
             <div class="max-w-4xl mx-auto">
                 <h1 class="text-4xl font-bold mb-4 text-center">Privacy Policy</h1>
-                <p class="text-center text-gray-400 mb-8">Last Updated: July 31, 2025</p>
+                <p class="text-center text-gray-400 mb-8">Last Updated: August 12, 2025</p>
                 <div class="space-y-6 text-gray-300 leading-relaxed">
                     <p>This Privacy Policy explains how Jailbreak Hub handles information when you use our website. Your privacy is important to us, and we are committed to being transparent about our practices.</p>
                     
                     <div>
                         <h2 class="text-2xl font-semibold mb-2 accent-color">Information We Collect</h2>
-                        <p>We believe in privacy by design. You can browse and use Jailbreak Hub without creating an account or providing any personal information for general browsing.</p>
+                        <p>We believe in privacy by design. You can browse and use Jailbreak Hub without creating an account or providing any personal information for general Browse.</p>
                         <ul class="list-disc list-inside mt-2 space-y-1 pl-4">
                             <li><span class="font-semibold text-white">Jailbreak Status Checker:</span> Our website features a tool to check jailbreak compatibility. When you enter your device model and iOS version, this information is processed entirely within your web browser. We do not see, collect, log, or store this data on our servers.</li>
                             <li><span class="font-semibold text-white">Contacting Us:</span> If you choose to contact us through our "Contact" link, we will use the information you provide (such as your email address) solely to respond to your inquiry.</li>
@@ -269,7 +251,6 @@
             </div>
         </section>
         
-        <!-- Contact Page -->
         <section id="contact" class="page">
             <div class="max-w-2xl mx-auto">
                 <h1 class="text-4xl font-bold mb-2 text-center">Contact Us</h1>
@@ -306,18 +287,16 @@
                         </button>
                     </div>
                 </form>
-                <!-- This div is for showing the success or error message -->
                 <div id="form-status" class="mt-6 text-center"></div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
     <footer class="border-t border-gray-700 mt-12">
         <div class="container mx-auto px-4 py-6 text-gray-400 text-sm">
             <div class="flex flex-col sm:flex-row justify-between items-center">
-                <p class="mb-4 sm:mb-0">&copy; 2025 Jailbreak Hub. All rights reserved.</p>
+                <p class="mb-4 sm:mb-0">© 2025 Jailbreak Hub. All rights reserved.</p>
                 <div class="flex space-x-4">
                     <a href="#privacy" class="hover:text-white transition-colors page-link">Privacy Policy</a>
                     <a href="#contact" class="hover:text-white transition-colors page-link">Contact</a>
