@@ -1,5 +1,12 @@
 [
   {
+    "id": 7,
+    "date": "August 13, 2025",
+    "title": "APP SPOTLIGHT: Showmania IPA Emerges as NetflixVIP Successor",
+    "summary": "Discover Showmania, the new IPA for streaming movies and shows for free, carrying on the legacy of the popular NetflixVIP application.",
+    "content": "For fans of sideloaded streaming apps, a new contender has arrived to fill a notable void. Showmania, a free movie and TV show watching application, is rapidly gaining popularity within the community. The app is being hailed as a spiritual successor to the once-popular NetflixVIP, offering users a vast library of content without a subscription.\n\nLike its predecessor, Showmania is available as an IPA file that can be installed on iPhones using sideloading tools such as AltStore or Sideloadly. It boasts a clean, user-friendly interface that makes Browse for content simple and intuitive. For those looking for a robust streaming alternative, Showmania is proving to be a worthy replacement, continuing the legacy of free-access entertainment on iOS.\n\nFor similar apps and updates, you can follow the official HDOBoxPlus channel on Telegram: https://t.me/s/hdoboxplus"
+  },
+  {
     "id": 6,
     "date": "August 11, 2025",
     "title": "GUIDE: Quick System-Wide Ad Blocking for Jailbroken iPhones",
@@ -40,7 +47,5 @@
     "title": "Community Spotlight: Top 5 Tweaks for Dopamine JB",
     "summary": "We highlight five must-have tweaks that enhance the user experience on the popular Dopamine jailbreak for iOS 15-16.",
     "content": "For those using the Dopamine jailbreak on iOS 15 and 16, customizing your device is key. We've polled the community and compiled a list of the top 5 essential tweaks. Coming in at number one is \"Atria,\" a home screen layout customizer. It's followed by \"Velvet 2\" for notification styling, \"Axon\" for lock screen organization, \"Snowboard\" for theming, and \"CopyLog\" for advanced clipboard management. These tweaks not only enhance aesthetics but also add powerful functionality to your jailbroken device."
-  },
+  }
 ]
-
-
