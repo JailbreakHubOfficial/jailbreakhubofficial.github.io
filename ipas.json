@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Unc0ver Jailbreak",
+    "version": "8.0.2",
+    "description": "The official IPA for the Unc0ver jailbreak, compatible with iOS 11.0 - 14.8.",
+    "icon": "https://img.icons8.com/ios-filled/100/00ff99/unlock.png",
+    "url": "https://github.com/JailbreakHubOfficial/jailbreakhubofficial.github.io/releases/download/v1.0.0/unc0ver.ipa"
+  },
+  {
+    "name": "Taurine Jailbreak",
+    "version": "1.1.6",
+    "description": "The official IPA for the Taurine jailbreak, a fast and reliable tool for iOS 14.0 - 14.3.",
+    "icon": "https://img.icons8.com/ios-filled/100/00ff99/bull.png",
+    "url": "https://github.com/JailbreakHubOfficial/jailbreakhubofficial.github.io/releases/download/v1.0.0/Taurine-v1.1.6.ipa"
+  },
+  {
+    "name": "Twitter (NeoBird)",
+    "version": "11.12.2",
+    "description": "A modified version of the Twitter app with added features and customizations.",
+    "icon": "https://img.icons8.com/ios-filled/100/00ff99/twitterx.png",
+    "url": "https://github.com/JailbreakHubOfficial/jailbreakhubofficial.github.io/releases/download/ipa/Twitter_NeoBird_11.12.2.ipa"
+  }
+]
