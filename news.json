@@ -10,8 +10,8 @@
    "id": 6,
    "date": "August 13, 2025",
    "title": "GUIDE: System-Wide Ad Blocking with the AdGuard Pro IPA",
-   "summary": "Learn how to achieve powerful, system-wide ad blocking on your iPhone by sideloading the AdGuard Pro IPA, without needing a jailbreak.",
-   "content": "For those seeking powerful, system-wide ad blocking without a jailbreak, the AdGuard Pro IPA is an excellent solution. By using a DNS filter, this app can block ads not just in Safari, but across most applications on your iPhone. Here’s how you can find and install it.\n\n1. Find the IPA\nNavigate to the Blatant Telegram channel at https://t.me/blatants. From there, find the 'Blatant IPA Library' and search for 'Adguard' to locate the IPA file.\n\n2. Understand the Requirements\nBefore installing, it is critical to know that this IPA requires a paid developer certificate with 'App Groups' enabled. It will not function correctly with a standard, free developer account.\n\n3. What are 'App Groups'?\n'App Groups' is an Apple developer feature that allows different apps from the same developer to share data securely. Think of it as a secure tunnel between the main AdGuard Pro app and its DNS filtering extension. The main app is where you set your rules and blocklists, and the 'App Group' allows it to securely pass those rules to the system-level extension that does the actual ad blocking. This capability is only available to paid Apple Developer accounts, which is why a paid certificate is necessary for the app to function.\n\nOnce properly signed and installed, AdGuard Pro provides one of the most effective ways to enjoy a cleaner, ad-free experience across your entire device."
+   "summary": "Sideload the AdGuard Pro IPA for powerful, system-wide ad blocking on any iPhone, no jailbreak required.",
+   "content": "The AdGuard Pro IPA offers system-wide ad blocking for non-jailbroken devices. Find it by searching for 'Adguard' in the 'Blatant IPA Library' on the Blatant Telegram channel (https://t.me/blatants).\n\nThis app requires a paid developer certificate to enable 'App Groups,' a feature that lets the main app securely send its filter lists to the system extension that blocks the ads. Free accounts cannot use this feature.\n\nOnce properly signed, AdGuard Pro is one of the best ways to block ads across your entire device."
   },
   {
     "id": 5,
@@ -49,4 +49,5 @@
     "content": "For those using the Dopamine jailbreak on iOS 15 and 16, customizing your device is key. We've polled the community and compiled a list of the top 5 essential tweaks. Coming in at number one is \"Atria,\" a home screen layout customizer. It's followed by \"Velvet 2\" for notification styling, \"Axon\" for lock screen organization, \"Snowboard\" for theming, and \"CopyLog\" for advanced clipboard management. These tweaks not only enhance aesthetics but also add powerful functionality to your jailbroken device."
   }
 ]
+
 
