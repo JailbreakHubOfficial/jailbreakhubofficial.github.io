@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const latestNewsContainer = document.getElementById('latest-news-container');
     const newsArchiveContainer = document.getElementById('news-archive-container');
     const paginationContainer = document.getElementById('pagination-container');
+    const ipaContainer = document.getElementById('ipa-container');
     const checkerDeviceInput = document.getElementById('checker-device-input');
     const checkerIosInput = document.getElementById('checker-ios-input');
     const checkerButton = document.getElementById('checker-button');
@@ -37,6 +38,85 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
 
+    // --- IPA Rendering ---
+    async function renderIpas() {
+        if (!ipaContainer) return; // Exit if the container isn't on the page
+
+        // Helper function to handle the download
+        async function downloadFile(url, filename, button) {
+            button.textContent = 'Downloading...';
+            button.disabled = true;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
+                
+                const blob = await response.blob();
+                const tempUrl = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = tempUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                
+                URL.revokeObjectURL(tempUrl);
+                document.body.removeChild(a);
+
+            } catch (error) {
+                console.error('Download failed:', error);
+                alert(`Could not download the file. Please try again later.`);
+            } finally {
+                button.textContent = 'Download';
+                button.disabled = false;
+            }
+        }
+
+        try {
+            const response = await fetch('ipas.json');
+            if (!response.ok) throw new Error('Could not load ipas.json');
+            
+            const ipas = await response.json();
+            ipaContainer.innerHTML = ''; 
+
+            ipas.forEach(ipa => {
+                const filename = `${ipa.name.replace(/\s+/g, '-')}-v${ipa.version}.ipa`;
+                const ipaCardHtml = `
+                    <div class="news-card rounded-lg overflow-hidden flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <div class="flex items-center mb-4">
+                                <img src="${ipa.icon}" alt="${ipa.name} icon" class="w-16 h-16 mr-4">
+                                <div>
+                                    <h3 class="text-xl font-bold">${ipa.name}</h3>
+                                    <p class="text-sm text-gray-400">Version ${ipa.version}</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">${ipa.description}</p>
+                        </div>
+                        <div class="p-6 bg-gray-800/50">
+                             <button data-url="${ipa.url}" data-filename="${filename}" class="ipa-download-btn block w-full text-center bg-accent-color text-black font-bold py-2 px-4 rounded-md hover:bg-green-400 transition-colors duration-300">
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                `;
+                ipaContainer.innerHTML += ipaCardHtml;
+            });
+
+            // Add event listeners to all new download buttons
+            document.querySelectorAll('.ipa-download-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const url = e.target.dataset.url;
+                    const filename = e.target.dataset.filename;
+                    downloadFile(url, filename, e.target);
+                });
+            });
+
+        } catch (error) {
+            console.error("Could not fetch or render IPA data:", error);
+            ipaContainer.innerHTML = `<p class="text-red-500 text-center col-span-full">Failed to load IPA files.</p>`;
+        }
+    }
 
     // --- News and Pagination Rendering ---
     function renderNews(newsData) {
@@ -249,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Initial Load ---
     checkForNewsUpdates();
+    renderIpas();
     const initialPage = window.location.hash.substring(1) || 'home';
     showPage(initialPage);
 
