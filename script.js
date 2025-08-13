@@ -38,39 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
 
-    // --- IPA Rendering ---
+    // --- IPA Rendering (Final, Simplified Version) ---
     async function renderIpas() {
-        if (!ipaContainer) return; // Exit if the container isn't on the page
-
-        // Helper function to handle the download
-        async function downloadFile(url, filename, button) {
-            button.textContent = 'Downloading...';
-            button.disabled = true;
-
-            try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
-                
-                const blob = await response.blob();
-                const tempUrl = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = tempUrl;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                
-                URL.revokeObjectURL(tempUrl);
-                document.body.removeChild(a);
-
-            } catch (error) {
-                console.error('Download failed:', error);
-                alert(`Could not download the file. Please try again later.`);
-            } finally {
-                button.textContent = 'Download';
-                button.disabled = false;
-            }
-        }
+        if (!ipaContainer) return;
 
         try {
             const response = await fetch('ipas.json');
@@ -81,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             ipas.forEach(ipa => {
                 const filename = `${ipa.name.replace(/\s+/g, '-')}-v${ipa.version}.ipa`;
+                
                 const ipaCardHtml = `
                     <div class="news-card rounded-lg overflow-hidden flex flex-col">
                         <div class="p-6 flex-grow">
@@ -94,22 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             <p class="text-gray-300 mb-4">${ipa.description}</p>
                         </div>
                         <div class="p-6 bg-gray-800/50">
-                             <button data-url="${ipa.url}" data-filename="${filename}" class="ipa-download-btn block w-full text-center bg-accent-color text-black font-bold py-2 px-4 rounded-md hover:bg-green-400 transition-colors duration-300">
+                             <a href="${ipa.url}" download="${filename}" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-accent-color text-black font-bold py-2 px-4 rounded-md hover:bg-green-400 transition-colors duration-300">
                                 Download
-                            </button>
+                            </a>
                         </div>
                     </div>
                 `;
                 ipaContainer.innerHTML += ipaCardHtml;
-            });
-
-            // Add event listeners to all new download buttons
-            document.querySelectorAll('.ipa-download-btn').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const url = e.target.dataset.url;
-                    const filename = e.target.dataset.filename;
-                    downloadFile(url, filename, e.target);
-                });
             });
 
         } catch (error) {
@@ -159,19 +121,16 @@ document.addEventListener('DOMContentLoaded', function () {
         paginationContainer.innerHTML = '';
         const totalPages = Math.ceil(totalArticles / articlesPerPage);
 
-        if (totalPages <= 1) return; // Don't render pagination if there's only one page
+        if (totalPages <= 1) return;
 
-        // Previous Button
         const prevDisabled = currentPage === 1;
         paginationContainer.innerHTML += `<button class="pagination-btn" data-page="prev" ${prevDisabled ? 'disabled' : ''}>&larr; Previous</button>`;
 
-        // Page Number Buttons
         for (let i = 1; i <= totalPages; i++) {
             const activeClass = i === currentPage ? 'active' : '';
             paginationContainer.innerHTML += `<button class="pagination-btn ${activeClass}" data-page="${i}">${i}</button>`;
         }
 
-        // Next Button
         const nextDisabled = currentPage === totalPages;
         paginationContainer.innerHTML += `<button class="pagination-btn" data-page="next" ${nextDisabled ? 'disabled' : ''}>Next &rarr;</button>`;
     }
@@ -212,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (newNewsDataString !== currentNewsDataString) {
                 console.log('News update found! Rendering new content.');
                 currentNewsDataString = newNewsDataString;
-                fullNewsData = newsData; // Store the full dataset
+                fullNewsData = newsData;
                 renderNews(fullNewsData);
                 renderPagination(fullNewsData.length);
             } else {
@@ -232,7 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             const targetPageId = link.getAttribute('href').substring(1);
             if (targetPageId) {
-                // Reset to page 1 when navigating to the news page from somewhere else
                 if (targetPageId === 'news') {
                     currentPage = 1;
                     renderNews(fullNewsData);
@@ -260,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         renderNews(fullNewsData);
         renderPagination(fullNewsData.length);
-        window.scrollTo(0, 0); // Scroll to top of page after changing page
+        window.scrollTo(0, 0);
     });
     
     // --- Jailbreak Checker Logic ---
