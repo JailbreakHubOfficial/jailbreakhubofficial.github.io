@@ -13,35 +13,31 @@
 <body class="antialiased flex flex-col min-h-screen">
 
     <header class="sticky top-0 z-50 bg-opacity-80 backdrop-blur-md border-b border-gray-700">
-    <div class="px-4 sm:px-6 lg:px-8">
-        <nav class="flex justify-between items-center py-4">
-            <a href="#home" class="text-2xl font-bold tracking-wider page-link">JB<span class="accent-color">HUB</span></a>
-
-            <div class="flex items-center">
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link page-link active">Home</a>
-                    <a href="#news" class="nav-link page-link">News</a>
-                    <a href="#guides" class="nav-link page-link">Guides</a>
-                    <a href="#status" class="nav-link page-link">Status</a>
-                    <a href="#ipa" class="nav-link page-link">IPA</a>
-                    <a href="#links" class="nav-link page-link">Links</a>
+        <div class="px-4 sm:px-6 lg:px-8">
+            <nav class="flex justify-between items-center py-4">
+                <a href="#home" class="text-2xl font-bold tracking-wider page-link">JB<span class="accent-color">HUB</span></a>
+                <div class="flex items-center">
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#home" class="nav-link page-link active">Home</a>
+                        <a href="#news" class="nav-link page-link">News</a>
+                        <a href="#guides" class="nav-link page-link">Guides</a>
+                        <a href="#status" class="nav-link page-link">Status</a>
+                        <a href="#links" class="nav-link page-link">Links</a>
+                    </div>
+                    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none ml-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
                 </div>
-
-                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none ml-6">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </nav>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2">
-        <a href="#home" class="block nav-link page-link active">Home</a>
-        <a href="#news" class="block nav-link page-link">News</a>
-        <a href="#guides" class="block nav-link page-link">Guides</a>
-        <a href="#status" class="block nav-link page-link">Status</a>
-        <a href="#ipa" class="block nav-link page-link">IPA</a>
-        <a href="#links" class="block nav-link page-link">Links</a>
-    </div>
-</header>
+            </nav>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2">
+            <a href="#home" class="block nav-link page-link active">Home</a>
+            <a href="#news" class="block nav-link page-link">News</a>
+            <a href="#guides" class="block nav-link page-link">Guides</a>
+            <a href="#status" class="block nav-link page-link">Status</a>
+            <a href="#links" class="block nav-link page-link">Links</a>
+        </div>
+    </header>
 
     <main class="container mx-auto px-4 py-8 md:py-12 flex-grow">
 
@@ -185,12 +181,6 @@
             </div>
         </section>
 
-        <section id="ipa" class="page">
-            <h1 class="text-4xl font-bold mb-8 text-center">IPA Library</h1>
-            <div id="ipa-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                </div>
-        </section>
-
         <section id="links" class="page">
             <h1 class="text-4xl font-bold mb-8 text-center">Community Links</h1>
             <div class="max-w-md mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
@@ -230,7 +220,6 @@
                 <p class="text-center text-gray-400 mb-8">Last Updated: August 14, 2025</p>
                 <div class="space-y-6 text-gray-300 leading-relaxed">
                     <p>This Privacy Policy explains how Jailbreak Hub handles information when you use our website. Your privacy is important to us, and we are committed to being transparent about our practices.</p>
-                    
                     <div>
                         <h2 class="text-2xl font-semibold mb-2 accent-color">Information We Collect</h2>
                         <p>We believe in privacy by design. You can browse and use Jailbreak Hub without creating an account or providing any personal information for general browsing.</p>
@@ -239,7 +228,6 @@
                             <li><span class="font-semibold text-white">Contacting Us:</span> If you choose to contact us through our "Contact" link, we will use the information you provide (such as your email address) solely to respond to your inquiry.</li>
                         </ul>
                     </div>
-
                     <div>
                         <h2 class="text-2xl font-semibold mb-2 accent-color">Third-Party Services</h2>
                         <p>Our website utilizes several third-party services to function. These services have their own privacy policies, and we encourage you to review them.</p>
@@ -249,12 +237,10 @@
                             <li><span class="font-semibold text-white">External Links:</span> We provide links to external community sites like Discord, Reddit, and X (formerly Twitter). We are not responsible for the content or privacy practices of these third-party websites.</li>
                         </ul>
                     </div>
-
                     <div>
                         <h2 class="text-2xl font-semibold mb-2 accent-color">Children's Information</h2>
                         <p>Jailbreak Hub is not directed at children under the age of 13. We do not knowingly collect any personally identifiable information from children. If you are a parent or guardian and believe that your child has provided us with any personal information, please contact us immediately so we can take steps to remove it.</p>
                     </div>
-
                     <div>
                         <h2 class="text-2xl font-semibold mb-2 accent-color">Contact Us</h2>
                         <p>If you have any questions or concerns about this Privacy Policy, please feel free to reach out to us through our contact page.</p>
@@ -267,7 +253,6 @@
             <div class="max-w-2xl mx-auto">
                 <h1 class="text-4xl font-bold mb-2 text-center">Contact Us</h1>
                 <p class="text-center text-gray-400 mb-8">Please submit your inquiry using the form below and we will get in touch with you shortly.</p>
-
                 <form id="contact-form" class="space-y-6">
                     <div>
                         <label for="name" class="sr-only">Your Name</label>
