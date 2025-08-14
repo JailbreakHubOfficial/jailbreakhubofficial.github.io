@@ -30,55 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const latestNewsContainer = document.getElementById('latest-news-container');
     const newsArchiveContainer = document.getElementById('news-archive-container');
     const paginationContainer = document.getElementById('pagination-container');
-    const ipaContainer = document.getElementById('ipa-container');
     const checkerDeviceInput = document.getElementById('checker-device-input');
     const checkerIosInput = document.getElementById('checker-ios-input');
     const checkerButton = document.getElementById('checker-button');
     const checkerResultText = document.getElementById('checker-result-text');
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
-
-    // --- IPA Rendering (Final, Simplified Version) ---
-    async function renderIpas() {
-        if (!ipaContainer) return;
-
-        try {
-            const response = await fetch('ipas.json');
-            if (!response.ok) throw new Error('Could not load ipas.json');
-            
-            const ipas = await response.json();
-            ipaContainer.innerHTML = ''; 
-
-            ipas.forEach(ipa => {
-                const filename = `${ipa.name.replace(/\s+/g, '-')}-v${ipa.version}.ipa`;
-                
-                const ipaCardHtml = `
-                    <div class="news-card rounded-lg overflow-hidden flex flex-col">
-                        <div class="p-6 flex-grow">
-                            <div class="flex items-center mb-4">
-                                <img src="${ipa.icon}" alt="${ipa.name} icon" class="w-16 h-16 mr-4">
-                                <div>
-                                    <h3 class="text-xl font-bold">${ipa.name}</h3>
-                                    <p class="text-sm text-gray-400">Version ${ipa.version}</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 mb-4">${ipa.description}</p>
-                        </div>
-                        <div class="p-6 bg-gray-800/50">
-                             <a href="${ipa.url}" download="${filename}" target="_blank" rel="noopener noreferrer" class="block w-full text-center bg-accent-color text-black font-bold py-2 px-4 rounded-md hover:bg-green-400 transition-colors duration-300">
-                                Download
-                            </a>
-                        </div>
-                    </div>
-                `;
-                ipaContainer.innerHTML += ipaCardHtml;
-            });
-
-        } catch (error) {
-            console.error("Could not fetch or render IPA data:", error);
-            ipaContainer.innerHTML = `<p class="text-red-500 text-center col-span-full">Failed to load IPA files.</p>`;
-        }
-    }
 
     // --- News and Pagination Rendering ---
     function renderNews(newsData) {
@@ -287,7 +244,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Initial Load ---
     checkForNewsUpdates();
-    renderIpas();
     const initialPage = window.location.hash.substring(1) || 'home';
     showPage(initialPage);
 
