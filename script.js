@@ -110,10 +110,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         mobileMenu.classList.add('hidden');
     };
-    
+
     // --- Mobile Menu Toggle ---
     mobileMenuButton.addEventListener('click', function() {
         mobileMenu.classList.toggle('hidden');
+    });
+
+    // --- Close Mobile Menu on Outside Click ---
+    document.addEventListener('click', function(event) {
+      // Check if the mobile menu is currently open
+      const isMenuOpen = !mobileMenu.classList.contains('hidden');
+      
+      // Check if the click occurred inside the menu area
+      const isClickInsideMenu = mobileMenu.contains(event.target);
+
+      // Check if the click was on the menu button itself (or the icon inside it)
+      const isClickOnMenuButton = mobileMenuButton.contains(event.target);
+
+      // If the menu is open AND the click was not inside the menu AND it was not on the button, then hide the menu.
+      if (isMenuOpen && !isClickInsideMenu && !isClickOnMenuButton) {
+        mobileMenu.classList.add('hidden');
+      }
     });
 
     // --- Data Loading and Polling ---
