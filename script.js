@@ -94,12 +94,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Page Navigation Logic ---
     const showPage = (pageId) => {
-        pages.forEach(page => page.classList.remove('active'));
+        pages.forEach(page => {
+            page.classList.remove('active');
+            page.classList.remove('fade-in'); // Make sure to remove old animation class
+        });
+
         const targetPage = document.getElementById(pageId);
         if (targetPage) {
-            targetPage.classList.add('active');
+            targetPage.classList.add('active');   // First, make it visible
+            targetPage.classList.add('fade-in');    // Then, apply the animation
             window.scrollTo(0, 0);
         }
+
         navLinks.forEach(link => {
             const isPageLink = link.classList.contains('page-link');
             if (isPageLink && link.getAttribute('href') === `#${pageId}`) {
