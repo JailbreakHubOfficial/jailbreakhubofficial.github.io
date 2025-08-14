@@ -1,10 +1,18 @@
-[
+
+[ 
+  {
+    "id": 8,
+    "date": "August 13, 2025",
+    "title": "A Beginner's Guide to Sideloading with AltStore",
+    "summary": "A quick guide to installing AltStore and sideloading your first .ipa file without a jailbreak.",
+    "content": "AltStore lets you install .ipa files on your iPhone using your computer and Apple ID.\n\n1. Get AltServer: Download AltServer from altstore.io. On Windows, you must also install the non-Microsoft Store versions of iTunes and iCloud from Apple's website.\n\n2. Install AltStore: Connect your iPhone to your computer via USB. Click the AltServer icon on your computer, select 'Install AltStore,' choose your device, and enter your Apple ID credentials.\n\n3. Trust & Sideload: On your iPhone, go to Settings > General > VPN & Device Management and 'Trust' your Apple ID. You can then open AltStore, tap the '+' icon, and select an .ipa file to install.\n\nRemember to refresh your apps every 7 days by connecting to AltServer over Wi-Fi."
+  },
   {
     "id": 7,
     "date": "August 13, 2025",
-    "title": "APP SPOTLIGHT: Showmania IPA Emerges as NetflixVIP Successor",
-    "summary": "Discover Showmania, the new IPA for streaming movies and shows for free, carrying on the legacy of the popular NetflixVIP application.",
-    "content": "For fans of sideloaded streaming apps, a new contender has arrived to fill a notable void. Showmania, a free movie and TV show watching application, is rapidly gaining popularity within the community. The app is being hailed as a spiritual successor to the once-popular NetflixVIP, offering users a vast library of content without a subscription.\n\nLike its predecessor, Showmania is available as an IPA file that can be installed on iPhones using sideloading tools such as AltStore or Sideloadly. It boasts a clean, user-friendly interface that makes Browse for content simple and intuitive. For those looking for a robust streaming alternative, Showmania is proving to be a worthy replacement, continuing the legacy of free-access entertainment on iOS.\n\nFor similar apps and updates, you can follow the official HDOBoxPlus channel on Telegram: https://t.me/s/hdoboxplus"
+    "title": "Rootful vs. Rootless: What's the Difference?",
+    "summary": "Learn the difference between old 'rootful' and new 'rootless' jailbreaks and why it matters for your tweaks.",
+    "content": "Modern jailbreaks are 'rootless' for improved security. Older 'rootful' jailbreaks gave full access to the core system files ('/'), which was powerful but risky. For security, Apple now makes this core system read-only.\n\n'Rootless' jailbreaks work around this by only modifying a safe, separate area (/var/jb). This is much safer, but it means older tweaks must be updated by their developers to work with this new file path. All modern jailbreaks now use the rootless method."
   },
   {
    "id": 6,
@@ -28,7 +36,7 @@
     "content": "In a move to better serve our community, we have re-engineered our news system. Instead of hard-coding articles, we now load all content from a centralized data source. This allows us to publish breaking news much faster. This entire article, for example, was added by simply adding a new entry to our data file. We hope you enjoy the more dynamic and up-to-date experience!"
   },
   {
-    "id": 1,
+    "id": 3,
     "date": "July 24, 2025",
     "title": "CoreTrust Bug Discovery Sparks Hope for iOS 18",
     "summary": "A newly discovered vulnerability in CoreTrust could pave the way for a jailbreak on Apple's latest OS. Researchers are cautiously optimistic.",
@@ -42,12 +50,10 @@
     "content": "The team behind the Palera1n jailbreak has released a new update, extending its compatibility to the latest minor versions of iOS 17 for all devices with the A11 Bionic chip and older. This update leverages the unpatchable checkm8 bootrom exploit, ensuring that devices like the iPhone X will remain jailbreakable for life. The update also brings stability improvements and fixes several bugs related to tweak injection and battery drain. Users can download the latest version from the official Palera1n website."
   },
   {
-    "id": 3,
+    "id": 1,
     "date": "July 18, 2025",
     "title": "Community Spotlight: Top 5 Tweaks for Dopamine JB",
     "summary": "We highlight five must-have tweaks that enhance the user experience on the popular Dopamine jailbreak for iOS 15-16.",
     "content": "For those using the Dopamine jailbreak on iOS 15 and 16, customizing your device is key. We've polled the community and compiled a list of the top 5 essential tweaks. Coming in at number one is \"Atria,\" a home screen layout customizer. It's followed by \"Velvet 2\" for notification styling, \"Axon\" for lock screen organization, \"Snowboard\" for theming, and \"CopyLog\" for advanced clipboard management. These tweaks not only enhance aesthetics but also add powerful functionality to your jailbroken device."
   }
 ]
-
-
