@@ -16,16 +16,21 @@
     <div class="px-4 sm:px-6 lg:px-8">
         <nav class="flex justify-between items-center py-4">
             <a href="#home" class="text-2xl font-bold tracking-wider page-link">JB<span class="accent-color">HUB</span></a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="nav-link page-link active">Home</a>
-                <a href="#news" class="nav-link page-link">News</a>
-                <a href="#guides" class="nav-link page-link">Guides</a>
-                <a href="#status" class="nav-link page-link">Status</a>
-                <a href="#links" class="nav-link page-link">Links</a>
+
+            <div class="flex items-center">
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link page-link active">Home</a>
+                    <a href="#news" class="nav-link page-link">News</a>
+                    <a href="#guides" class="nav-link page-link">Guides</a>
+                    <a href="#status" class="nav-link page-link">Status</a>
+                    <a href="#ipa" class="nav-link page-link">IPA</a>
+                    <a href="#links" class="nav-link page-link">Links</a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none ml-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
         </nav>
     </div>
     <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2">
@@ -33,6 +38,7 @@
         <a href="#news" class="block nav-link page-link">News</a>
         <a href="#guides" class="block nav-link page-link">Guides</a>
         <a href="#status" class="block nav-link page-link">Status</a>
+        <a href="#ipa" class="block nav-link page-link">IPA</a>
         <a href="#links" class="block nav-link page-link">Links</a>
     </div>
 </header>
@@ -182,8 +188,7 @@
         <section id="ipa" class="page">
             <h1 class="text-4xl font-bold mb-8 text-center">IPA Library</h1>
             <div id="ipa-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <p class="text-center col-span-full text-gray-400">Loading IPA files...</p>
-            </div>
+                </div>
         </section>
 
         <section id="links" class="page">
@@ -222,13 +227,13 @@
         <section id="privacy" class="page">
             <div class="max-w-4xl mx-auto">
                 <h1 class="text-4xl font-bold mb-4 text-center">Privacy Policy</h1>
-                <p class="text-center text-gray-400 mb-8">Last Updated: August 13, 2025</p>
+                <p class="text-center text-gray-400 mb-8">Last Updated: August 14, 2025</p>
                 <div class="space-y-6 text-gray-300 leading-relaxed">
                     <p>This Privacy Policy explains how Jailbreak Hub handles information when you use our website. Your privacy is important to us, and we are committed to being transparent about our practices.</p>
                     
                     <div>
                         <h2 class="text-2xl font-semibold mb-2 accent-color">Information We Collect</h2>
-                        <p>We believe in privacy by design. You can browse and use Jailbreak Hub without creating an account or providing any personal information for general Browse.</p>
+                        <p>We believe in privacy by design. You can browse and use Jailbreak Hub without creating an account or providing any personal information for general browsing.</p>
                         <ul class="list-disc list-inside mt-2 space-y-1 pl-4">
                             <li><span class="font-semibold text-white">Jailbreak Status Checker:</span> Our website features a tool to check jailbreak compatibility. When you enter your device model and iOS version, this information is processed entirely within your web browser. We do not see, collect, log, or store this data on our servers.</li>
                             <li><span class="font-semibold text-white">Contacting Us:</span> If you choose to contact us through our "Contact" link, we will use the information you provide (such as your email address) solely to respond to your inquiry.</li>
@@ -301,16 +306,16 @@
     </main>
 
     <footer class="border-t border-gray-700 mt-12">
-    <div class="px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row justify-between items-center py-6 text-gray-400 text-sm">
-            <p class="mb-4 sm:mb-0">© 2025 Jailbreak Hub. All rights reserved.</p>
-            <div class="flex space-x-4">
-                <a href="#privacy" class="hover:text-white transition-colors page-link">Privacy Policy</a>
-                <a href="#contact" class="hover:text-white transition-colors page-link">Contact</a>
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-6 text-gray-400 text-sm">
+                <p class="mb-4 sm:mb-0">© 2025 Jailbreak Hub. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#privacy" class="hover:text-white transition-colors page-link">Privacy Policy</a>
+                    <a href="#contact" class="hover:text-white transition-colors page-link">Contact</a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="script.js"></script>
 </body>
