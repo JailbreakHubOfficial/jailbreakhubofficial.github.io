@@ -1,10 +1,10 @@
 [ 
   {
     "id": 9,
-    "date": "August 20, 2025",
+    "date": "August 21, 2025",
     "title": "GUIDE: Get Spotify Premium Features Free with a Sideloaded IPA",
     "summary": "Learn how to install a modified Spotify IPA using Sideloadly or TrollStore to get premium features like ad-free listening and unlimited skips on your iPhone for free.",
-    "content": "ad-free listening and unlimited skips by sideloading a modified IPA from my GitHub: [Your GitHub Page Link].\n\n Note: This method violates Spotify's Terms of Service. Features such as offline downloads and high-quality streaming will not work.\n\nInstallation Methods:\n\nTrollStore (Recommended): If your device is compatible, open the IPA in TrollStore to permanently sign and install it.\n\nSideloadly / AltStore: Use these computer-based tools to install the app. Both of these tools refresh every 7 days to keep the app functional.\n\nAfter installing, simply log in with your standard account to enjoy the unlocked features."
+    "content": "ad-free listening and unlimited skips by sideloading a modified IPA from my GitHub: https://github.com/JailbreakHubOfficial/jailbreakhubofficial.github.io/releases/tag/IPA.\n\n Note: This method violates Spotify's Terms of Service. Features such as offline downloads and high-quality streaming will not work.\n\nInstallation Methods:\n\nTrollStore (Recommended): If your device is compatible, open the IPA in TrollStore to permanently sign and install it.\n\nSideloadly / AltStore: Use these computer-based tools to install the app. Both of these tools refresh every 7 days to keep the app functional.\n\nAfter installing, simply log in with your standard account to enjoy the unlocked features."
   },
   {
     "id": 8,
@@ -63,4 +63,5 @@
     "content": "For those using the Dopamine jailbreak on iOS 15 and 16, customizing your device is key. We've polled the community and compiled a list of the top 5 essential tweaks. Coming in at number one is \"Atria,\" a home screen layout customizer. It's followed by \"Velvet 2\" for notification styling, \"Axon\" for lock screen organization, \"Snowboard\" for theming, and \"CopyLog\" for advanced clipboard management. These tweaks not only enhance aesthetics but also add powerful functionality to your jailbroken device."
   }
 ]
+
 
